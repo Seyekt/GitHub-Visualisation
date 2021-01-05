@@ -1,6 +1,4 @@
 from github import Github
-import requests
-#from pprint import pprint
 from githubAPI import *
 import pandas as pd
 import seaborn as sns
