@@ -30,8 +30,8 @@ repoData = repoToData(user)
 data = pd.DataFrame.from_dict(repoData, orient = 'index', columns = ["Repository Name", "Programming language", 
 "Date created", "Date Last Pushed", "Star Count"])
 
-starCount = data.sort_values(by=['Star Count'], ascending=False)
-plot = sns.barplot(data = starCount[0:5], x='Repository Name', y='Star Count', palette='tab10')
+starCount = data.sort_values(by = ['Star Count'], ascending = False)
+plot = sns.barplot(data = starCount[0:10], x = 'Repository Name', y = 'Star Count', palette = 'tab10')
 plot.set_title("Star Count")
 
 plt.show()
