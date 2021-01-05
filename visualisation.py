@@ -4,6 +4,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+def labelFunction(val):
+    return f'{val / 100 * len(data):.0f}\n{val:.0f}%'
+
 sns.set_theme()
 
 g = Github()
@@ -33,5 +36,9 @@ plt.show()
 numberOfCommits = data.sort_values(by = ['Repo Commits'], ascending = True)
 plot = sns.barplot(data = numberOfCommits[0:10], x = 'Repo Commits', y = 'Repository Name', palette = 'mako')
 plot.set_title(user.login + " Repository Commits")
+
+plt.show()
+
+data.groupby('Programming language').size().plot(kind='pie', autopct = labelFunction, textprops = {'fontsize': 14}, ylabel = 'By Language')
 
 plt.show()
