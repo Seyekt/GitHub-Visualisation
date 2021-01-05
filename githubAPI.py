@@ -17,6 +17,18 @@ def repoToStr(repo):
 	output += ("Star Count: " + str(repo.stargazers_count) + "\n") 
 	return output
 
+def repoToData(user):
+
+	#user = g.get_user()
+
+	repoData = {}
+
+	for i, repo in user.get_repos():
+		repoData[i] = {'Repository Name': repo.full_name, 'Description': repo.description, 'Programming language': repo.language, 'Date created': + repo.created_at, 
+		'Date Last Pushed': repo.pushed_at, 'Star Count': repo.stargazers_count}
+
+	return repoData
+
 def getUserRepos(user):
 	output = ""
 	for repo in user.get_repos():
@@ -29,6 +41,8 @@ def getTokenRepos(user):
 	for repo in user.get_repos():
 		output += repoToStr(repo)
 	return output
+
+
 
 g = Github()
 
