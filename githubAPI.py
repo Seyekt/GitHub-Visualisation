@@ -26,7 +26,7 @@ def repoToData(user):
 	repos = user.get_repos()
 
 	for i, repo in enumerate(repos):
-		repoData[i] = {'Repository Name': repo.full_name, 'Description': repo.description, 'Programming language': repo.language, 'Date created': repo.created_at, 
+		repoData[i] = {'Repository Name': repo.name, 'Description': repo.description, 'Programming language': repo.language, 'Date created': repo.created_at, 
 		'Date Last Pushed': repo.pushed_at, 'Star Count': repo.stargazers_count}
 
 	return repoData
