@@ -2,8 +2,11 @@ from github import Github
 import requests
 from pprint import pprint
 from githubAPI import *
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+sns.set_theme()
 
 g = Github()
 
@@ -20,19 +23,15 @@ else:
     user = g.get_user()
 	#print(getTokenRepos(g))
     
-print(getUserRepos(user))
+#print(getUserRepos(user))
 
-# Load an example dataset
-tips = sns.load_dataset("tips")
 repoData = repoToData(user)
 
-sns.set_theme()
+data = pd.DataFrame.from_dict(repoData, orient = 'index', columns = ["Repository Name", "Programming language", 
+"Date created", "Date Last Pushed", "Star Count"])
 
-# Create a visualization
-sns.relplot (
-    data=repoData,
-    x="total_bill", y="tip", col="time",
-    hue="smoker", style="smoker", size="size",
-)
+starCount = data.sort_values(by=['Star Count'], ascending=False)
+plot = sns.barplot(data = starCount[0:5], x='Repository Name', y='Star Count', palette='tab10')
+plot.set_title("Star Count")
 
 plt.show()

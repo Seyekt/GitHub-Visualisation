@@ -23,8 +23,10 @@ def repoToData(user):
 
 	repoData = {}
 
-	for i, repo in user.get_repos():
-		repoData[i] = {'Repository Name': repo.full_name, 'Description': repo.description, 'Programming language': repo.language, 'Date created': + repo.created_at, 
+	repos = user.get_repos()
+
+	for i, repo in enumerate(repos):
+		repoData[i] = {'Repository Name': repo.full_name, 'Description': repo.description, 'Programming language': repo.language, 'Date created': repo.created_at, 
 		'Date Last Pushed': repo.pushed_at, 'Star Count': repo.stargazers_count}
 
 	return repoData
@@ -36,24 +38,8 @@ def getUserRepos(user):
 	return output
 
 def getTokenRepos(user):
-	user = g.get_user()	
+	#user = g.get_user()	
 	output = ""
 	for repo in user.get_repos():
 		output += repoToStr(repo)
 	return output
-
-
-
-g = Github()
-
-try:
-	tokentext = open("token.txt")
-except FileNotFoundError:
-	print("Token file not found.")
-	username = input("Enter GitHub username: ")
-	user = g.get_user(username)	
-	print(getUserRepos(user))
-else:
-	token = tokentext.readline()
-	g = Github(token)
-	print(getTokenRepos(g))
