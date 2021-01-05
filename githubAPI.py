@@ -7,16 +7,6 @@ def getUserData(username):
 	userData = requests.get(url).json()
 	return userData
 
-def repoToStr(repo):
-	output = ""
-	output += ("Repository Name: " + repo.full_name + "\n")
-	output += ("Description: " + str(repo.description) + "\n")
-	output += ("Programming language: " + str(repo.language) + "\n")
-	output += ("Date created: " + str(repo.created_at) + "\n") 
-	output += ("Date Last Pushed: " + str(repo.pushed_at) + "\n") 
-	output += ("Star Count: " + str(repo.stargazers_count) + "\n") 
-	return output
-
 def repoToData(user):
 
 	repoData = {}
@@ -28,16 +18,3 @@ def repoToData(user):
 		'Date Last Pushed': repo.pushed_at, 'Repo Commits': repo.get_commits().totalCount, 'Star Count': repo.stargazers_count}
 
 	return repoData
-
-def getUserRepos(user):
-	output = ""
-	for repo in user.get_repos():
-		output += repoToStr(repo)
-	return output
-
-def getTokenRepos(user):
-	#user = g.get_user()	
-	output = ""
-	for repo in user.get_repos():
-		output += repoToStr(repo)
-	return output

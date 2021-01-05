@@ -39,6 +39,6 @@ plot.set_title(user.login + " Repository Commits")
 
 plt.show()
 
-data.groupby('Programming language').size().plot(kind='pie', autopct = labelFunction, textprops = {'fontsize': 14}, ylabel = 'By Language')
+data.groupby('Programming language').size().plot(kind = 'pie', autopct = labelFunction, textprops = {'fontsize': 14}, ylabel = 'By Language')
 
 plt.show()
